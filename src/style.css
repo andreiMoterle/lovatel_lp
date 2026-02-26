@@ -13,6 +13,11 @@
   --bg: #050505;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg);

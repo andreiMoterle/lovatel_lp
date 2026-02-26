@@ -18,8 +18,19 @@ const PROJECTS = [
 
 const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
   const container = useRef()
+  const titleRef = useRef()
 
   useGSAP(() => {
+    // Pin do título enquanto os projetos scrollam
+    ScrollTrigger.create({
+      trigger: titleRef.current,
+      start: 'top 120px',
+      end: () => `+=${container.current.offsetHeight - 400}`,
+      pin: true,
+      pinSpacing: false,
+      markers: false
+    })
+
     // Animação do Portfólio (Works) aparecendo com scroll
     const workItems = gsap.utils.toArray('.work-item')
     workItems.forEach((item, i) => {
@@ -44,21 +55,23 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
   }, { scope: container })
 
   return (
-    <section id="work" ref={container} className="max-w-[1600px] mx-auto px-6 pb-40 relative">
-      <div className="flex flex-col lg:flex-row gap-16 lg:gap-8 items-start">
+    <section id="work" ref={container} className="max-w-[1600px] mx-auto px-4 md:px-6 pb-20 md:pb-40 relative">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
         
-        <div className="lg:w-1/3 lg:sticky lg:top-40 shrink-0 z-20">
-          <h2 className="text-[clamp(3rem,8vw,5.6rem)] leading-none mb-8">
-            <TypewriterText text="PROJETOS" /><br />
-          </h2>
-          <p className="max-w-[350px] text-white/40 text-lg leading-relaxed text-reveal">
-            Uma curadoria estratégica de projetos que desafiam o status quo e estabelecem novas tendências de mercado.
-          </p>
+        <div ref={titleRef} className="w-full lg:w-[35%] shrink-0">
+          <div className="lg:pr-8">
+            <h2 className="text-[clamp(2.5rem,8vw,5.6rem)] leading-none mb-6 md:mb-8">
+              <TypewriterText text="PROJETOS" /><br />
+            </h2>
+            <p className="max-w-[350px] text-white/40 text-base md:text-lg leading-relaxed text-reveal">
+              Uma curadoria estratégica de projetos que desafiam o status quo e estabelecem novas tendências de mercado.
+            </p>
+          </div>
         </div>
 
-        <div className="lg:w-2/3 flex flex-col md:flex-row gap-8">
+        <div className="w-full lg:w-[65%] flex flex-col md:flex-row gap-6 md:gap-8">
           {[0, 1].map(colIndex => (
-            <div key={colIndex} className={`flex-1 flex flex-col gap-8 ${colIndex === 1 ? 'md:mt-32' : ''}`}>
+            <div key={colIndex} className={`flex-1 flex flex-col gap-6 md:gap-8 ${colIndex === 1 ? 'md:mt-32' : ''}`}>
               {PROJECTS.filter((_, i) => i % 2 === colIndex).map(project => (
                 <ProjectCard 
                   key={project.id}

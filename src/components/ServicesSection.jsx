@@ -58,42 +58,42 @@ const ServicesSection = () => {
   }, { scope: container })
 
   return (
-    <section id="services" ref={container} className="bg-white/5 py-40">
-      <div className="max-w-[1400px] mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
+    <section id="services" ref={container} className="bg-white/5 py-20 md:py-40">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
         <div>
-          <h2 className="text-[clamp(3rem,6vw,4.2rem)] leading-none mb-12">
+          <h2 className="text-[clamp(2.2rem,6vw,4.2rem)] leading-none mb-8 md:mb-12">
             <TypewriterText text="COMO ELEVAMOS" /><br />
             <span className="text-accent">SEU NEGÓCIO.</span>
           </h2>
-          <p className="text-xl text-white/40 mb-12 max-w-[500px] text-reveal">
+          <p className="text-base md:text-xl text-white/40 mb-8 md:mb-12 max-w-[500px] text-reveal">
             Misturamos design thinking com execução técnica impecável para criar ferramentas reais de venda e posicionamento.
           </p>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
              {['Identidade Visual', 'Performance Web', 'Estratégia de Crescimento', 'Design de Embalagens'].map((s, i) => (
-               <div key={i} className="text-reveal flex items-center gap-6 py-6 border-b border-white/10 group cursor-default">
-                  <span className="text-white/20 font-black text-2xl group-hover:text-accent transition-colors shrink-0">0{i+1}</span>
-                  <h4 className="text-2xl group-hover:translate-x-4 transition-transform duration-500 uppercase font-bold">{s}</h4>
+               <div key={i} className="text-reveal flex items-center gap-3 md:gap-6 py-4 md:py-6 border-b border-white/10 group cursor-default">
+                  <span className="text-white/20 font-black text-lg md:text-2xl group-hover:text-accent transition-colors shrink-0">0{i+1}</span>
+                  <h4 className="text-base md:text-2xl group-hover:translate-x-2 md:group-hover:translate-x-4 transition-transform duration-500 uppercase font-bold">{s}</h4>
                </div>
              ))}
           </div>
         </div>
         
-        <div className="relative group text-reveal">
+        <div className="relative group text-reveal mt-8 lg:mt-0">
           <div className="absolute -inset-4 bg-accent/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-          <div className="relative glass p-12 lg:p-16 rounded-[4rem] border-white/10 flex flex-col gap-12 shadow-2xl">
-             <div className="grid grid-cols-2 gap-10">
-                <div className="space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-accent"><Monitor size={28} /></div>
-                  <h5 className="font-bold text-xl uppercase tracking-wider">TECNOLOGIA</h5>
-                  <p className="text-sm text-white/40 leading-relaxed">Sistemas escaláveis e seguros para qualquer tamanho de operação ou desafio técnico.</p>
+          <div className="relative glass p-8 md:p-12 lg:p-16 rounded-3xl md:rounded-[4rem] border-white/10 flex flex-col gap-8 md:gap-12 shadow-2xl">
+             <div className="grid grid-cols-2 gap-6 md:gap-10">
+                <div className="space-y-3 md:space-y-4">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center text-accent"><Monitor size={20} className="md:w-7 md:h-7" /></div>
+                  <h5 className="font-bold text-sm md:text-xl uppercase tracking-wider">TECNOLOGIA</h5>
+                  <p className="text-xs md:text-sm text-white/40 leading-relaxed">Sistemas escaláveis e seguros para qualquer tamanho de operação ou desafio técnico.</p>
                 </div>
-                <div className="space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-accent"><Plus size={28} /></div>
-                  <h5 className="font-bold text-xl uppercase tracking-wider">DESIGN</h5>
-                  <p className="text-sm text-white/40 leading-relaxed">Experiências visuais que encantam e prendem o olhar do usuário desde o primeiro segundo.</p>
+                <div className="space-y-3 md:space-y-4">
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center text-accent"><Plus size={20} className="md:w-7 md:h-7" /></div>
+                  <h5 className="font-bold text-sm md:text-xl uppercase tracking-wider">DESIGN</h5>
+                  <p className="text-xs md:text-sm text-white/40 leading-relaxed">Experiências visuais que encantam e prendem o olhar do usuário desde o primeiro segundo.</p>
                 </div>
              </div>
-             <a href="#contact" className="w-full bg-accent text-black py-6 rounded-full font-black text-center tracking-[0.2em] hover:bg-white transition-colors uppercase text-sm">
+             <a href="#contact" className="w-full bg-accent text-black py-4 md:py-6 rounded-full font-black text-center tracking-[0.2em] hover:bg-white transition-colors uppercase text-xs md:text-sm">
                INICIAR PROJETO
              </a>
           </div>
