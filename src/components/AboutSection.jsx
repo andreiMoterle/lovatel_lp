@@ -93,19 +93,6 @@ const AboutSection = () => {
     // About Gallery Horizontal Scroll
     const galleryItems = gsap.utils.toArray('.gallery-item')
     if (galleryRef.current && galleryItems.length > 0) {
-      // Pin do título da galeria
-      if (galleryTitleRef.current) {
-        ScrollTrigger.create({
-          trigger: galleryRef.current,
-          pin: galleryTitleRef.current,
-          pinSpacing: false,
-          start: 'top 40%',
-          end: () => '+=' + galleryRef.current.offsetWidth,
-          refreshPriority: 2
-        })
-      }
-
-      // Scroll horizontal da galeria
       gsap.to(galleryItems, {
         xPercent: -100 * (galleryItems.length - 1),
         ease: 'none',
@@ -113,7 +100,7 @@ const AboutSection = () => {
           trigger: galleryRef.current,
           pin: true,
           scrub: 1,
-          start: 'top 40%',
+          start: 'top 30%',
           end: () => '+=' + galleryRef.current.offsetWidth,
           refreshPriority: 1
         }
