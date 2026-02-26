@@ -93,17 +93,31 @@ const AboutSection = () => {
 
     // About Gallery Horizontal Scroll
     const galleryItems = gsap.utils.toArray('.gallery-item')
-    if (galleryWrapperRef.current && galleryRef.current && galleryItems.length > 0) {
-      gsap.to(galleryItems, {
-        xPercent: -100 * (galleryItems.length - 1),
-        ease: 'none',
+    const wrapper = galleryRef.current.querySelector('.gallery-wrapper')
+    
+    if (galleryWrapperRef.current && wrapper && galleryItems.length > 0) {
+      
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "none"
+        },
         scrollTrigger: {
           trigger: galleryWrapperRef.current,
           pin: true,
-          scrub: 1,
+          scrub: true,
           start: 'top 15%',
-          end: () => '+=' + galleryRef.current.offsetWidth,
+          end: "+=3000",
           refreshPriority: 1
+        }
+      })
+
+      galleryItems.forEach((item, i) => {
+        if (galleryItems[i + 1]) {
+          tl.to(wrapper, {
+            // Em vez de usar -100 * (i+1), como a largura das fotos muda por celular (85vw) x desktop (40vw), 
+            // usamos a largura real de cada foto no DOM. Isso é igual deslizar 'section por section'
+            x: () => -(item.offsetWidth * (i + 1) + (16 * (i + 1))) // 16px é uma média para o gap
+          })
         }
       })
     }
@@ -214,15 +228,15 @@ const AboutSection = () => {
         </div>
 
         {/* Galeria Horizontal */}
-        <div ref={galleryWrapperRef} className="mb-12 md:mb-20">
-          <div ref={galleryTitleRef} className="flex items-center justify-between mb-8 md:mb-16">
+        <div ref={galleryWrapperRef} className="pb-12 md:pb-20 overflow-hidden relative -mx-4 md:-mx-6">
+          <div ref={galleryTitleRef} className="flex items-center justify-between mb-8 md:mb-16 px-4 md:px-6">
             <h3 className="text-2xl md:text-3xl lg:text-5xl font-black uppercase">NOSSA <span className="text-accent">ESTRUTURA</span></h3>
           </div>
           
-          <div ref={galleryRef} className="overflow-hidden">
-            <div className="flex gap-4 md:gap-8 lg:gap-12 flex-nowrap">
+          <div ref={galleryRef} className="w-full pl-4 md:pl-6">
+            <div className="gallery-wrapper flex gap-4 md:gap-8 lg:gap-12 flex-nowrap w-max pr-8 md:pr-16">
               {ABOUT_PHOTOS.map((photo, i) => (
-                <div key={i} className="gallery-item w-[90vw] md:w-[40vw] aspect-video rounded-2xl md:rounded-3xl overflow-hidden relative group border border-white/10 shrink-0 cursor-grab">
+                <div key={i} className="gallery-item w-[85vw] sm:w-[50vw] lg:w-[40vw] max-w-[800px] aspect-video rounded-2xl md:rounded-3xl overflow-hidden relative group border border-white/10 shrink-0 cursor-grab">
                   <img 
                     src={photo} 
                     alt={`Lovatel Agência - Estrutura ${i + 1}`} 

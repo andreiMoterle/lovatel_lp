@@ -60,24 +60,28 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
     const cards = gsap.utils.toArray('.mobile-card')
 
     if (wrapper && cards.length > 0) {
-      // Cálculo do final do trigger baseado no número de cartas e na largura para ter uma boa 'duração' de scroll
-      const totalWidth = wrapper.scrollWidth
-      
       const tl = gsap.timeline({
+        defaults: {
+          ease: "none"
+        },
         scrollTrigger: {
           trigger: mobileRef.current,
-          start: 'top 15%', // O pino acontece quando a seção chega a 15% do topo (ajustável para melhor ux)
-          end: () => `+=${totalWidth}`, // Quanto maior, mais demora o scroll
+          start: 'top top',
+          end: "+=4000", // Simula a duração longa para dar controle à passagem dos cartões
           pin: true,
-          scrub: 1,
+          scrub: true,
         }
       })
 
-      // Transição horizontal suave para todos os cards
-      tl.to(wrapper, {
-        x: () => -(totalWidth - window.innerWidth),
-        ease: 'none'
-      })
+      cards.forEach((card, i) => {
+        // O código de referência faz uma animação vertical se tiver panels na section, como nós só temos a carta,
+        // vamos direto para o deslizar horizontal do container total!
+        if (cards[i + 1]) {
+          tl.to(wrapper, {
+            x: () => -(window.innerWidth * (i + 1))
+          });
+        }
+      });
     }
   }, { scope: mobileRef })
 
@@ -119,8 +123,8 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
     </section>
 
       {/* MOBILE — horizontal scroll, oculto no desktop */}
-      <section id="work" ref={mobileRef} className="lg:hidden pb-20 overflow-hidden">
-        <div className="px-4 mb-10">
+      <section id="work" ref={mobileRef} className="lg:hidden h-dvh pt-20 flex flex-col justify-center overflow-hidden">
+        <div className="px-4 mb-10 shrink-0">
           <h2 className="text-[clamp(2.5rem,12vw,4rem)] leading-none mb-4">
             <TypewriterText text="PROJETOS" />
           </h2>
@@ -131,9 +135,9 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
 
         <div className="mobile-wrapper flex w-max">
           {PROJECTS.map((project) => (
-            <div
-              key={project.id}
-              className="mobile-card w-screen px-4 flex-shrink-0"
+          <div
+            key={project.id}
+              className="mobile-card w-screen px-4 shrink-0"
             >
               <ProjectCard
                 project={project}
@@ -144,7 +148,7 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
                 onClick={setSelectedUrl}
               />
             </div>
-          ))}
+        ))}
         </div>
       </section>
     </>
