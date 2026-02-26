@@ -75,7 +75,7 @@ const HeroSection = ({ handleScroll }) => {
             Agência de elite focada em elevar o padrão visual de marcas visionárias através de <span className="text-white relative inline-block transition-all duration-300 hover:text-accent hover:drop-shadow-[0_0_15px_rgba(197,173,111,0.6)] cursor-crosshair group-text">Branding de Impacto</span> e <span className="text-white relative inline-block transition-all duration-300 hover:text-accent hover:drop-shadow-[0_0_15px_rgba(197,173,111,0.6)] cursor-crosshair group-text">Alta Performance Digital</span>.
           </p>
           <div className="flex gap-3 md:gap-4">
-            <a href="#work" onClick={(e) => handleScroll(e, '#work')} className="group flex items-center gap-3 md:gap-4 bg-white/5 border border-white/10 px-5 md:px-8 py-4 md:py-5 rounded-full hover:bg-white hover:text-black transition-all duration-500 text-sm md:text-base">
+            <a href="#work" onClick={(e) => handleScroll(e, '#work')} className="group flex items-center gap-3 md:gap-4 bg-white/5 border border-white/10 px-5 md:px-8 py-4 md:py-5 rounded-full hover:bg-white hover:text-black transition-all duration-500 text-sm md:text-base cursor-pointer smooth-hover">
               <span className="font-bold tracking-widest text-xs md:text-sm">EXPLORAR PROJETOS</span>
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-black/20">
                 <ArrowUpRight size={18} className="md:w-5 md:h-5" />

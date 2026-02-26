@@ -19,6 +19,7 @@ const ABOUT_PHOTOS = [
 const AboutSection = () => {
   const container = useRef()
   const galleryRef = useRef()
+  const galleryTitleRef = useRef()
 
   useGSAP(() => {
     // Efeito de Revelação Suave (Fade Up)
@@ -92,6 +93,19 @@ const AboutSection = () => {
     // About Gallery Horizontal Scroll
     const galleryItems = gsap.utils.toArray('.gallery-item')
     if (galleryRef.current && galleryItems.length > 0) {
+      // Pin do título da galeria
+      if (galleryTitleRef.current) {
+        ScrollTrigger.create({
+          trigger: galleryRef.current,
+          pin: galleryTitleRef.current,
+          pinSpacing: false,
+          start: 'top 40%',
+          end: () => '+=' + galleryRef.current.offsetWidth,
+          refreshPriority: 2
+        })
+      }
+
+      // Scroll horizontal da galeria
       gsap.to(galleryItems, {
         xPercent: -100 * (galleryItems.length - 1),
         ease: 'none',
@@ -99,7 +113,7 @@ const AboutSection = () => {
           trigger: galleryRef.current,
           pin: true,
           scrub: 1,
-          start: 'top 20%',
+          start: 'top 40%',
           end: () => '+=' + galleryRef.current.offsetWidth,
           refreshPriority: 1
         }
@@ -131,7 +145,7 @@ const AboutSection = () => {
         {/* Modern Cards Grid - Missão e Visão */}
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 mb-12 md:mb-20 max-w-[1200px] mx-auto">
           {/* Missão Card */}
-          <div className="info-card group relative overflow-hidden">
+          <div className="info-card group relative overflow-hidden cursor-magnetic">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
             <div className="glass relative p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2.5rem] border border-white/10 hover:border-accent/30 transition-all duration-500 h-full">
               <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
@@ -150,7 +164,7 @@ const AboutSection = () => {
           </div>
 
           {/* Visão Card */}
-          <div className="info-card group relative overflow-hidden">
+          <div className="info-card group relative overflow-hidden cursor-magnetic">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
             <div className="glass relative p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2.5rem] border border-white/10 hover:border-accent/30 transition-all duration-500 h-full">
               <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
@@ -171,7 +185,7 @@ const AboutSection = () => {
 
         {/* Valores Section - Premium Card */}
         <div className="max-w-[1400px] mx-auto mb-16 md:mb-32">
-          <div className="info-card relative overflow-hidden">
+          <div className="info-card relative overflow-hidden cursor-default">
             <div className="absolute -inset-[100px] bg-accent/5 blur-[120px] rounded-full opacity-50"></div>
             <div className="glass relative p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-[3rem] border border-white/10 shadow-2xl">
               <div className="flex items-center gap-3 md:gap-6 mb-8 md:mb-12">
@@ -217,14 +231,14 @@ const AboutSection = () => {
 
         {/* Galeria Horizontal */}
         <div className="mb-12 md:mb-20">
-          <div className="flex items-center justify-between mb-8 md:mb-16 text-reveal">
+          <div ref={galleryTitleRef} className="flex items-center justify-between mb-8 md:mb-16 text-reveal">
             <h3 className="text-2xl md:text-3xl lg:text-5xl font-black uppercase">NOSSA <span className="text-accent">ESTRUTURA</span></h3>
           </div>
           
           <div ref={galleryRef} className="overflow-hidden">
             <div className="flex gap-4 md:gap-8 lg:gap-12 flex-nowrap">
               {ABOUT_PHOTOS.map((photo, i) => (
-                <div key={i} className="gallery-item w-[90vw] md:w-[40vw] aspect-video rounded-2xl md:rounded-3xl overflow-hidden relative group border border-white/10 shrink-0">
+                <div key={i} className="gallery-item w-[90vw] md:w-[40vw] aspect-video rounded-2xl md:rounded-3xl overflow-hidden relative group border border-white/10 shrink-0 cursor-grab">
                   <img 
                     src={photo} 
                     alt={`Lovatel Agência - Estrutura ${i + 1}`} 

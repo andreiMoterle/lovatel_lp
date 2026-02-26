@@ -5,7 +5,7 @@ const ProjectCard = ({ project, colIndex, isHovered, onHover, onHoverEnd, onClic
   return (
     <div 
       data-parity={colIndex === 0 ? 'even' : 'odd'}
-      className={`work-item group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`work-item group relative cursor-view transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isHovered !== null && isHovered !== project.id ? 'blur-sm opacity-30 scale-95' : ''
       } ${isHovered === project.id ? 'md:scale-105 z-10 md:-translate-y-4' : ''}`}
       onClick={() => onClick(project.url)}

@@ -38,6 +38,59 @@ h1, h2, h3 {
   @apply bg-black/40 border border-white/10 backdrop-blur-2xl;
 }
 
+/* Custom Cursors */
+.cursor-magnetic {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-magnetic:hover {
+  transform: scale(1.02);
+}
+
+.cursor-arrow {
+  cursor: ne-resize;
+}
+
+.cursor-view {
+  cursor: zoom-in;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-view:hover {
+  transform: scale(1.03);
+}
+
+.cursor-grab {
+  cursor: grab;
+  user-select: none;
+}
+
+.cursor-grab:active {
+  cursor: grabbing;
+}
+
+/* Smooth interactions */
+.smooth-hover {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(123, 97, 255, 0.3);
+}
+
+/* Cursor effects extras */
+.cursor-crosshair {
+  cursor: crosshair;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cursor-crosshair:hover {
+  color: var(--color-accent);
+}
+
 /* Lenis Smooth Scroll */
 html.lenis {
   height: auto;

@@ -70,7 +70,7 @@ const ServicesSection = () => {
           </p>
           <div className="space-y-3 md:space-y-4">
              {['Identidade Visual', 'Performance Web', 'Estratégia de Crescimento', 'Design de Embalagens'].map((s, i) => (
-               <div key={i} className="text-reveal flex items-center gap-3 md:gap-6 py-4 md:py-6 border-b border-white/10 group cursor-default">
+               <div key={i} className="text-reveal flex items-center gap-3 md:gap-6 py-4 md:py-6 border-b border-white/10 group cursor-crosshair">
                   <span className="text-white/20 font-black text-lg md:text-2xl group-hover:text-accent transition-colors shrink-0">0{i+1}</span>
                   <h4 className="text-base md:text-2xl group-hover:translate-x-2 md:group-hover:translate-x-4 transition-transform duration-500 uppercase font-bold">{s}</h4>
                </div>
@@ -93,7 +93,7 @@ const ServicesSection = () => {
                   <p className="text-xs md:text-sm text-white/40 leading-relaxed">Experiências visuais que encantam e prendem o olhar do usuário desde o primeiro segundo.</p>
                 </div>
              </div>
-             <a href="#contact" className="w-full bg-accent text-black py-4 md:py-6 rounded-full font-black text-center tracking-[0.2em] hover:bg-white transition-colors uppercase text-xs md:text-sm">
+             <a href="#contact" className="w-full bg-accent text-black py-4 md:py-6 rounded-full font-black text-center tracking-[0.2em] hover:bg-white transition-colors uppercase text-xs md:text-sm cursor-pointer smooth-hover">
                INICIAR PROJETO
              </a>
           </div>

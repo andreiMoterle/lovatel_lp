@@ -38,13 +38,13 @@ const App = () => {
         </div>
         
         <div className="hidden md:flex gap-8 text-[0.8rem] font-bold tracking-widest text-white/60 uppercase">
-          <a href="#work" onClick={(e) => handleScroll(e, '#work')} className="hover:text-white transition-colors">Projetos</a>
-          <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="hover:text-white transition-colors">Serviços</a>
-          <a href="#agency" onClick={(e) => handleScroll(e, '#agency')} className="hover:text-white transition-colors">Quem Somos</a>
+          <a href="#work" onClick={(e) => handleScroll(e, '#work')} className="hover:text-white transition-colors cursor-pointer">Projetos</a>
+          <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="hover:text-white transition-colors cursor-pointer">Serviços</a>
+          <a href="#agency" onClick={(e) => handleScroll(e, '#agency')} className="hover:text-white transition-colors cursor-pointer">Quem Somos</a>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="hidden sm:inline-flex bg-white text-black px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-[0.8rem] font-bold hover:bg-accent transition-colors">
+          <a href="#contact" onClick={(e) => handleScroll(e, '#contact')} className="hidden sm:inline-flex bg-white text-black px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[0.7rem] md:text-[0.8rem] font-bold hover:bg-accent transition-colors cursor-pointer smooth-hover">
             FALE CONOSCO
           </a>
           <button 
@@ -72,21 +72,21 @@ const App = () => {
                 <a 
                   href="#work" 
                   onClick={(e) => handleScroll(e, '#work')} 
-                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4"
+                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
                 >
                   Projetos
                 </a>
                 <a 
                   href="#services" 
                   onClick={(e) => handleScroll(e, '#services')} 
-                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4"
+                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
                 >
                   Serviços
                 </a>
                 <a 
                   href="#agency" 
                   onClick={(e) => handleScroll(e, '#agency')} 
-                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4"
+                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
                 >
                   Quem Somos
                 </a>
@@ -95,7 +95,7 @@ const App = () => {
               <a 
                 href="#contact" 
                 onClick={(e) => handleScroll(e, '#contact')} 
-                className="bg-accent text-black px-8 py-4 rounded-full text-sm font-black text-center tracking-widest hover:bg-white transition-colors uppercase"
+                className="bg-accent text-black px-8 py-4 rounded-full text-sm font-black text-center tracking-widest hover:bg-white transition-colors uppercase cursor-pointer smooth-hover"
               >
                 Fale Conosco
               </a>
@@ -103,8 +103,8 @@ const App = () => {
               <div className="mt-auto mb-8 pt-8 border-t border-white/10">
                 <p className="text-white/40 text-xs tracking-widest mb-4 uppercase">Redes Sociais</p>
                 <div className="flex gap-6">
-                  <a href="#" className="text-white/60 hover:text-accent transition-colors text-sm uppercase font-bold">Instagram</a>
-                  <a href="#" className="text-white/60 hover:text-accent transition-colors text-sm uppercase font-bold">LinkedIn</a>
+                  <a href="#" className="text-white/60 hover:text-accent transition-colors text-sm uppercase font-bold cursor-pointer">Instagram</a>
+                  <a href="#" className="text-white/60 hover:text-accent transition-colors text-sm uppercase font-bold cursor-pointer">LinkedIn</a>
                 </div>
               </div>
             </div>
@@ -162,9 +162,9 @@ const App = () => {
             </div>
             
             <div className="flex flex-wrap justify-center md:justify-start gap-6 md:gap-12 text-xs font-bold tracking-[0.2em] md:tracking-[0.3em] text-white/40">
-               <a href="#" className="hover:text-accent transition-colors uppercase">Instagram</a>
-               <a href="#" className="hover:text-accent transition-colors uppercase">LinkedIn</a>
-               <a href="#" className="hover:text-accent transition-colors uppercase">Behance</a>
+               <a href="#" className="hover:text-accent transition-colors uppercase cursor-pointer">Instagram</a>
+               <a href="#" className="hover:text-accent transition-colors uppercase cursor-pointer">LinkedIn</a>
+               <a href="#" className="hover:text-accent transition-colors uppercase cursor-pointer">Behance</a>
             </div>
             
             <div className="text-[0.65rem] md:text-xs text-white/20 tracking-wider text-center md:text-left pt-6 md:pt-0 border-t border-white/5 md:border-0">
