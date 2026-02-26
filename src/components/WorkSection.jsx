@@ -19,6 +19,7 @@ const PROJECTS = [
 const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
   const container = useRef()
   const titleRef = useRef()
+  const mobileRef = useRef()
 
   useGSAP(() => {
     // Pin do título enquanto os projetos scrollam
@@ -54,8 +55,36 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
     })
   }, { scope: container })
 
+  useGSAP(() => {
+    const wrapper = mobileRef.current.querySelector('.mobile-wrapper')
+    const cards = gsap.utils.toArray('.mobile-card')
+
+    if (wrapper && cards.length > 0) {
+      // Cálculo do final do trigger baseado no número de cartas e na largura para ter uma boa 'duração' de scroll
+      const totalWidth = wrapper.scrollWidth
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: mobileRef.current,
+          start: 'top 15%', // O pino acontece quando a seção chega a 15% do topo (ajustável para melhor ux)
+          end: () => `+=${totalWidth}`, // Quanto maior, mais demora o scroll
+          pin: true,
+          scrub: 1,
+        }
+      })
+
+      // Transição horizontal suave para todos os cards
+      tl.to(wrapper, {
+        x: () => -(totalWidth - window.innerWidth),
+        ease: 'none'
+      })
+    }
+  }, { scope: mobileRef })
+
   return (
-    <section id="work" ref={container} className="max-w-[1600px] mx-auto px-4 md:px-6 pb-20 md:pb-40 relative">
+    <>
+      {/* DESKTOP — intacto, oculto no mobile */}
+      <section id="work" ref={container} className="hidden lg:flex max-w-[1600px] mx-auto px-4 md:px-6 pb-20 md:pb-40 relative">
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
         
         <div ref={titleRef} className="w-full lg:w-[35%] shrink-0">
@@ -88,6 +117,37 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
         </div>
       </div>
     </section>
+
+      {/* MOBILE — horizontal scroll, oculto no desktop */}
+      <section id="work" ref={mobileRef} className="lg:hidden pb-20 overflow-hidden">
+        <div className="px-4 mb-10">
+          <h2 className="text-[clamp(2.5rem,12vw,4rem)] leading-none mb-4">
+            <TypewriterText text="PROJETOS" />
+          </h2>
+          <p className="text-white/40 text-base leading-relaxed max-w-[340px]">
+            Uma curadoria estratégica de projetos que desafiam o status quo e estabelecem novas tendências de mercado.
+          </p>
+        </div>
+
+        <div className="mobile-wrapper flex w-max">
+          {PROJECTS.map((project) => (
+            <div
+              key={project.id}
+              className="mobile-card w-screen px-4 flex-shrink-0"
+            >
+              <ProjectCard
+                project={project}
+                colIndex={0}
+                isHovered={hoveredProject}
+                onHover={setHoveredProject}
+                onHoverEnd={() => setHoveredProject(null)}
+                onClick={setSelectedUrl}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }
 
