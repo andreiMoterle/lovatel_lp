@@ -20,6 +20,7 @@ const AboutSection = () => {
   const container = useRef()
   const galleryRef = useRef()
   const galleryTitleRef = useRef()
+  const galleryWrapperRef = useRef()
 
   useGSAP(() => {
     // Efeito de Revelação Suave (Fade Up)
@@ -92,15 +93,15 @@ const AboutSection = () => {
 
     // About Gallery Horizontal Scroll
     const galleryItems = gsap.utils.toArray('.gallery-item')
-    if (galleryRef.current && galleryItems.length > 0) {
+    if (galleryWrapperRef.current && galleryRef.current && galleryItems.length > 0) {
       gsap.to(galleryItems, {
         xPercent: -100 * (galleryItems.length - 1),
         ease: 'none',
         scrollTrigger: {
-          trigger: galleryRef.current,
+          trigger: galleryWrapperRef.current,
           pin: true,
           scrub: 1,
-          start: 'top 30%',
+          start: 'top 15%',
           end: () => '+=' + galleryRef.current.offsetWidth,
           refreshPriority: 1
         }
@@ -213,8 +214,8 @@ const AboutSection = () => {
         </div>
 
         {/* Galeria Horizontal */}
-        <div className="mb-12 md:mb-20">
-          <div ref={galleryTitleRef} className="flex items-center justify-between mb-8 md:mb-16 text-reveal">
+        <div ref={galleryWrapperRef} className="mb-12 md:mb-20">
+          <div ref={galleryTitleRef} className="flex items-center justify-between mb-8 md:mb-16">
             <h3 className="text-2xl md:text-3xl lg:text-5xl font-black uppercase">NOSSA <span className="text-accent">ESTRUTURA</span></h3>
           </div>
           
