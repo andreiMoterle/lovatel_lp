@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import WaveBackground from './components/WaveBackground'
 import HeroSection from './components/HeroSection'
@@ -15,6 +15,13 @@ const App = () => {
   const [selectedUrl, setSelectedUrl] = useState(null)
   const [hoveredProject, setHoveredProject] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [cursorPos, setCursorPos] = useState({ x: -1000, y: -1000 })
+
+  useEffect(() => {
+    const handleMouseMove = (e) => setCursorPos({ x: e.clientX, y: e.clientY })
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   // Âncoras fluídas
   const handleScroll = (e, id) => {
@@ -29,6 +36,17 @@ const App = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <WaveBackground />
+
+      {/* Global Cursor Glow */}
+      <div
+        className="fixed pointer-events-none z-[100] w-[600px] h-[600px] rounded-full"
+        style={{
+          left: cursorPos.x,
+          top: cursorPos.y,
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, rgba(88,74,137,0.13) 0%, transparent 70%)',
+        }}
+      />
       
       {/* Navigation */}
       <nav className="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 w-[min(1200px,94%)] glass-nav rounded-full px-4 md:px-8 py-3 md:py-4 flex justify-between items-center z-[1000]">
@@ -38,9 +56,9 @@ const App = () => {
         </div>
         
         <div className="hidden md:flex gap-8 text-[0.8rem] font-bold tracking-widest text-white/60 uppercase">
+          <a href="#agency" onClick={(e) => handleScroll(e, '#agency')} className="hover:text-white transition-colors cursor-pointer">Quem Somos</a>
           <a href="#work" onClick={(e) => handleScroll(e, '#work')} className="hover:text-white transition-colors cursor-pointer">Projetos</a>
           <a href="#services" onClick={(e) => handleScroll(e, '#services')} className="hover:text-white transition-colors cursor-pointer">Serviços</a>
-          <a href="#agency" onClick={(e) => handleScroll(e, '#agency')} className="hover:text-white transition-colors cursor-pointer">Quem Somos</a>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
@@ -70,6 +88,13 @@ const App = () => {
             <div className="flex flex-col h-full pt-24 px-8">
               <nav className="flex flex-col gap-6 mb-12">
                 <a 
+                  href="#agency" 
+                  onClick={(e) => handleScroll(e, '#agency')} 
+                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
+                >
+                  Quem Somos
+                </a>
+                <a 
                   href="#work" 
                   onClick={(e) => handleScroll(e, '#work')} 
                   className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
@@ -82,13 +107,6 @@ const App = () => {
                   className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
                 >
                   Serviços
-                </a>
-                <a 
-                  href="#agency" 
-                  onClick={(e) => handleScroll(e, '#agency')} 
-                  className="text-white/80 hover:text-accent transition-colors text-xl font-bold uppercase tracking-widest border-b border-white/10 pb-4 cursor-pointer"
-                >
-                  Quem Somos
                 </a>
               </nav>
 

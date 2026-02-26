@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import TypewriterText from './TypewriterText'
+import { Target, Sparkles, Gem, Handshake, Zap, Shield, Leaf } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -19,16 +20,6 @@ const AboutSection = () => {
   const container = useRef()
   const galleryRef = useRef()
   const galleryTitleRef = useRef()
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
-
-  const handleMouseMove = (e, cardRef) => {
-    const rect = cardRef.getBoundingClientRect()
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    })
-  }
 
   useGSAP(() => {
     // Efeito de Revelação Suave (Fade Up)
@@ -141,24 +132,11 @@ const AboutSection = () => {
         {/* Modern Cards Grid - Missão e Visão */}
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 mb-12 md:mb-20 max-w-[1200px] mx-auto">
           {/* Missão Card */}
-          <div 
-            className="info-card group relative overflow-hidden cursor-magnetic"
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            <div 
-              className="absolute w-[400px] h-[400px] rounded-full bg-accent/30 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style={{
-                left: `${mousePosition.x}px`,
-                top: `${mousePosition.y}px`,
-                transform: 'translate(-50%, -50%)'
-              }}
-            ></div>
+          <div className="info-card group relative overflow-hidden cursor-magnetic">
             <div className="glass relative p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2.5rem] border-2 border-white/10 hover:border-accent/50 transition-all duration-500 h-full shadow-[0_0_50px_rgba(88,74,137,0.1)] hover:shadow-[0_0_80px_rgba(88,74,137,0.3)]">
               <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center shrink-0 overflow-hidden group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <img src="https://media.tenor.com/rM2M3d_VInsAAAAi/target-bullseye.gif" alt="Mission" className="w-full h-full object-cover opacity-90" />
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <Target className="w-6 h-6 md:w-8 md:h-8 text-accent" />
                 </div>
                 <div className="flex-1">
                   <div className="text-[0.6rem] md:text-[0.65rem] font-bold tracking-[0.3em] text-accent/60 mb-1 md:mb-2 uppercase">01</div>
@@ -172,24 +150,11 @@ const AboutSection = () => {
           </div>
 
           {/* Visão Card */}
-          <div 
-            className="info-card group relative overflow-hidden cursor-magnetic"
-            onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            <div 
-              className="absolute w-[400px] h-[400px] rounded-full bg-accent/30 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style={{
-                left: `${mousePosition.x}px`,
-                top: `${mousePosition.y}px`,
-                transform: 'translate(-50%, -50%)'
-              }}
-            ></div>
+          <div className="info-card group relative overflow-hidden cursor-magnetic">
             <div className="glass relative p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2.5rem] border-2 border-white/10 hover:border-accent/50 transition-all duration-500 h-full shadow-[0_0_50px_rgba(88,74,137,0.1)] hover:shadow-[0_0_80px_rgba(88,74,137,0.3)]">
               <div className="flex items-start gap-3 md:gap-6 mb-4 md:mb-6">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center shrink-0 overflow-hidden group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <img src="https://media.tenor.com/r3j-EFo_eJMAAAAi/stars.gif" alt="Vision" className="w-full h-full object-cover opacity-90" />
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                  <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-accent" />
                 </div>
                 <div className="flex-1">
                   <div className="text-[0.6rem] md:text-[0.65rem] font-bold tracking-[0.3em] text-accent/60 mb-1 md:mb-2 uppercase">02</div>
@@ -209,8 +174,8 @@ const AboutSection = () => {
             <div className="absolute -inset-[100px] bg-accent/5 blur-[120px] rounded-full opacity-50"></div>
             <div className="glass relative p-6 md:p-12 lg:p-16 rounded-2xl md:rounded-[3rem] border border-white/10 shadow-2xl">
               <div className="flex items-center gap-3 md:gap-6 mb-8 md:mb-12">
-                <div className="w-14 h-14 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center shrink-0 overflow-hidden">
-                  <img src="https://media.tenor.com/EYK5n5xbtjgAAAAi/diamond.gif" alt="Values" className="w-full h-full object-cover opacity-90" />
+                <div className="w-14 h-14 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center shrink-0">
+                  <Gem className="w-7 h-7 md:w-10 md:h-10 text-accent" />
                 </div>
                 <div>
                   <div className="text-[0.6rem] md:text-[0.65rem] font-bold tracking-[0.3em] text-accent/60 mb-1 md:mb-2 uppercase">03</div>
@@ -220,29 +185,20 @@ const AboutSection = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
                 {[
-                  { gif: "https://media.tenor.com/3Ii-aFZubUcAAAAi/handshake.gif", text: "Tratamos os outros como gostaríamos de ser tratados" },
-                  { gif: "https://media.tenor.com/b3f1eZM3xT4AAAAi/lightning-bolt.gif", text: "A busca da excelência é um dos nossos diferenciais" },
-                  { gif: "https://media.tenor.com/6wuA2d2VIU0AAAAi/shield.gif", text: "Demonstramos ética para com todos os indivíduos" },
-                  { gif: "https://media.tenor.com/rM2M3d_VInsAAAAi/target-bullseye.gif", text: "Garantimos uma excelente experiência" },
-                  { gif: "https://media.tenor.com/LzG0L6m314AAAAAi/plant.gif", text: "Comprometidos com a responsabilidade socioambiental" }
+                                  { icon: <Handshake className="w-4 h-4 md:w-5 md:h-5 text-accent" />, text: "Tratamos os outros como gostaríamos de ser tratados" },
+                  { icon: <Zap className="w-4 h-4 md:w-5 md:h-5 text-accent" />, text: "A busca da excelência é um dos nossos diferenciais" },
+                  { icon: <Shield className="w-4 h-4 md:w-5 md:h-5 text-accent" />, text: "Demonstramos ética para com todos os indivíduos" },
+                  { icon: <Target className="w-4 h-4 md:w-5 md:h-5 text-accent" />, text: "Garantimos uma excelente experiência" },
+                  { icon: <Leaf className="w-4 h-4 md:w-5 md:h-5 text-accent" />, text: "Comprometidos com a responsabilidade socioambiental" }
                 ].map((valor, idx) => {
                   return (
                     <div 
                       key={idx} 
                       className="group/item relative p-4 md:p-6 rounded-xl md:rounded-2xl border-2 border-white/5 hover:border-accent/40 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-500 cursor-default overflow-hidden"
-                      onMouseMove={(e) => handleMouseMove(e, e.currentTarget)}
                     >
-                      <div 
-                        className="absolute w-[300px] h-[300px] rounded-full bg-accent/20 blur-[80px] opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{
-                          left: `${mousePosition.x}px`,
-                          top: `${mousePosition.y}px`,
-                          transform: 'translate(-50%, -50%)'
-                        }}
-                      ></div>
                       <div className="relative flex items-start gap-3 md:gap-4">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-accent/10 border-2 border-accent/30 flex items-center justify-center shrink-0 overflow-hidden group-hover/item:scale-110 group-hover/item:rotate-12 transition-all duration-500">
-                          <img src={valor.gif} alt="Value" className="w-full h-full object-cover opacity-90" />
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-accent/10 border-2 border-accent/30 flex items-center justify-center shrink-0 group-hover/item:scale-110 group-hover/item:rotate-12 transition-all duration-500">
+                          {valor.icon}
                         </div>
                         <p className="text-white/60 group-hover/item:text-white/90 transition-colors text-xs md:text-sm leading-relaxed pt-0.5 md:pt-1">
                           {valor.text}
