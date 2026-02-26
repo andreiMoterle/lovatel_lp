@@ -30,7 +30,7 @@ const HeroSection = ({ handleScroll }) => {
 
     // Hero Interactive Parallax (Reacts to Mouse, only on desktop)
     const handleMouseMove = (e) => {
-      if (window.innerWidth < 768) return // Desabilita no mobile
+      if (window.innerWidth < 768) return
       const { clientX, clientY } = e
       const xPos = (clientX / window.innerWidth - 0.5) * 60
       const yPos = (clientY / window.innerHeight - 0.5) * 60
@@ -61,7 +61,7 @@ const HeroSection = ({ handleScroll }) => {
       <div ref={heroRef} className="absolute inset-0 pointer-events-none"></div>
       <div className="relative z-10 hero-content w-full">
         <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8 hero-item mt-20 md:mt-16 lg:mt-0">
-          <span className="text-accent font-bold tracking-[0.25em] md:tracking-[0.3em] text-[0.55rem] md:text-[0.7rem] uppercase">Estúdios Digital Premium</span>
+          <span className="text-accent font-bold tracking-[0.25em] md:tracking-[0.3em] text-[0.55rem] md:text-[0.7rem] uppercase">Lovatel Agência</span>
           <div className="h-px w-12 md:w-20 bg-white/20"></div>
         </div>
         

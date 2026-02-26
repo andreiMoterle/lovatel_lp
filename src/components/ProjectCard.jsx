@@ -12,7 +12,7 @@ const ProjectCard = ({ project, colIndex, isHovered, onHover, onHoverEnd, onClic
       onMouseEnter={() => onHover(project.id)}
       onMouseLeave={onHoverEnd}
     >
-      <div className={`relative aspect-[4/5] overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-zinc-900 border transition-colors duration-500 ${isHovered === project.id ? 'border-accent/50 shadow-2xl shadow-accent/20' : 'border-white/5'}`}>
+      <div className={`relative aspect-[4/5] lg:aspect-[4/5] max-w-[400px] overflow-hidden rounded-2xl md:rounded-[2.5rem] bg-zinc-900 border transition-colors duration-500 ${isHovered === project.id ? 'border-accent/50 shadow-2xl shadow-accent/20' : 'border-white/5'}`}>
         <img 
           src={project.img} 
           alt={project.title} 
@@ -22,7 +22,7 @@ const ProjectCard = ({ project, colIndex, isHovered, onHover, onHoverEnd, onClic
         
         <div className={`absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 flex justify-between items-end transition-transform duration-700 ${isHovered === project.id ? 'translate-y-0' : 'translate-y-4'}`}>
           <div>
-            <div className={`text-accent text-[0.55rem] md:text-[0.6rem] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${isHovered === project.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+            <div className={`text-accent bg-black/40 backdrop-blur-sm px-2 py-1 rounded-md inline-block text-[0.55rem] md:text-[0.6rem] font-bold tracking-[0.25em] md:tracking-[0.3em] uppercase mb-3 md:mb-4 transition-all duration-700 delay-100 ${isHovered === project.id ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
               {project.type}
             </div>
             <h3 className="text-2xl md:text-3xl lg:text-4xl text-white leading-none font-bold drop-shadow-md">
@@ -30,9 +30,13 @@ const ProjectCard = ({ project, colIndex, isHovered, onHover, onHoverEnd, onClic
               <span className="font-light text-white/60">{project.title.split(' ').slice(1).join(' ')}</span>
             </h3>
           </div>
-          <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all duration-700 ${isHovered === project.id ? 'opacity-100 translate-x-0 rotate-45 bg-white text-black shadow-[0_0_30px_rgba(255,255,255,0.3)]' : 'glass opacity-0 translate-x-4 rotate-0 text-white'}`}>
-            <ArrowUpRight size={20} className="md:w-6 md:h-6" />
-          </div>
+            <div className={`absolute bottom-0 right-0 w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all duration-700 ${
+              isHovered === project.id
+                ? 'opacity-100 rotate-45 bg-white text-black shadow-[0_0_30px_rgba(255,255,255,0.3)]'
+                : 'opacity-0 translate-x-4 rotate-0 text-white'
+            }`}>
+              <ArrowUpRight size={20} className="md:w-6 md:h-6" />
+            </div>
         </div>
       </div>
     </div>

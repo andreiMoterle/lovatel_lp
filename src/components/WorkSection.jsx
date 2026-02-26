@@ -25,7 +25,7 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
     // Pin do título enquanto os projetos scrollam
     ScrollTrigger.create({
       trigger: titleRef.current,
-      start: 'top 120px',
+      start: 'top 15%',
       end: () => `+=${container.current.offsetHeight - 400}`,
       pin: true,
       pinSpacing: false,
@@ -67,20 +67,15 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
         scrollTrigger: {
           trigger: mobileRef.current,
           start: 'top top',
-          end: "+=4000", // Simula a duração longa para dar controle à passagem dos cartões
+          end: () => "+=" + (wrapper.scrollWidth - window.innerWidth),
           pin: true,
           scrub: true,
+          invalidateOnRefresh: true,
         }
-      })
+      });
 
-      cards.forEach((card, i) => {
-        // O código de referência faz uma animação vertical se tiver panels na section, como nós só temos a carta,
-        // vamos direto para o deslizar horizontal do container total!
-        if (cards[i + 1]) {
-          tl.to(wrapper, {
-            x: () => -(window.innerWidth * (i + 1))
-          });
-        }
+      tl.to(wrapper, {
+        x: () => -(wrapper.scrollWidth - window.innerWidth),
       });
     }
   }, { scope: mobileRef })
@@ -92,7 +87,7 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
         
         <div ref={titleRef} className="w-full lg:w-[35%] shrink-0">
-          <div className="lg:pr-8">
+          <div className="">
             <h2 className="text-[clamp(2.5rem,8vw,5.6rem)] leading-none mb-6 md:mb-8">
               <TypewriterText text="PROJETOS" /><br />
             </h2>
@@ -123,7 +118,11 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
     </section>
 
       {/* MOBILE — horizontal scroll, oculto no desktop */}
-      <section id="work" ref={mobileRef} className="lg:hidden h-dvh pt-20 flex flex-col justify-center overflow-hidden">
+      <section 
+        id="work"
+        ref={mobileRef}
+        className="lg:hidden min-h-screen pt-20 flex flex-col justify-center overflow-hidden">
+
         <div className="px-4 mb-10 shrink-0">
           <h2 className="text-[clamp(2.5rem,12vw,4rem)] leading-none mb-4">
             <TypewriterText text="PROJETOS" />
@@ -135,20 +134,22 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
 
         <div className="mobile-wrapper flex w-max">
           {PROJECTS.map((project) => (
-          <div
-            key={project.id}
-              className="mobile-card w-screen px-4 shrink-0"
+            <div
+              key={project.id}
+              className="mobile-card px-4 shrink-0 h-[70vh] max-h-[500px] flex items-center"
             >
-              <ProjectCard
-                project={project}
-                colIndex={0}
-                isHovered={hoveredProject}
-                onHover={setHoveredProject}
-                onHoverEnd={() => setHoveredProject(null)}
-                onClick={setSelectedUrl}
-              />
+              <div className="max-w-[400px] h-full">
+                <ProjectCard
+                  project={project}
+                  colIndex={0}
+                  isHovered={hoveredProject}
+                  onHover={setHoveredProject}
+                  onHoverEnd={() => setHoveredProject(null)}
+                  onClick={setSelectedUrl}
+                />  
+              </div>
             </div>
-        ))}
+          ))}
         </div>
       </section>
     </>
