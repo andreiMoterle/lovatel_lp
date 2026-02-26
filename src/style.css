@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #c5ad6f;
-  --color-primary-brand: #584a89;
+  --color-accent: #584a89;
+  --color-primary-brand: #c5ad6f;
   --color-bg-dark: #050505;
   --font-heading: "Outfit", sans-serif;
   --font-body: "Lexend", sans-serif;

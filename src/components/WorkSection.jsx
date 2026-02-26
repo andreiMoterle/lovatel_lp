@@ -28,8 +28,8 @@ const WorkSection = ({ hoveredProject, setHoveredProject, setSelectedUrl }) => {
         {
           scrollTrigger: {
             trigger: item,
-            start: 'top 90%',
-            end: 'top 20%',
+            start: 'top 100%',
+            end: 'bottom 0%',
             toggleActions: 'play reverse play reverse'
           },
           y: 0,

@@ -12,8 +12,8 @@ const WavePlane = () => {
 
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },
-    uColor1: { value: new THREE.Color('#584a89') }, // Purple
-    uColor2: { value: new THREE.Color('#c5ad6f') }, // Gold
+    uColor1: { value: new THREE.Color('#050505') }, // Background mix
+    uColor2: { value: new THREE.Color('#584a89') }, // Brand Purple
   }), [])
 
   useFrame((state) => {
